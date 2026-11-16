@@ -1,0 +1,53 @@
+name: Formosa Trail Pages
+on:
+  push:
+    branches: [main]
+    paths: ['index.html', '.site-source/**', '.github/workflows/pages.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: formosa-trail-pages
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify source and restore calculator pages
+        run: python .site-source/build.py
+      - name: Commit calculator pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ft54.html ft40.html
+          if ! git diff --cached --quiet; then
+            git commit -m "Restore verified FT54 and FT40 calculators with navigation"
+            git push origin HEAD:main
+          fi
+      - name: Prepare public site only
+        run: |
+          mkdir -p _site
+          cp index.html ft54.html ft40.html .nojekyll _site/
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
