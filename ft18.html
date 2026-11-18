@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FT18 Pace-0.2 | Formosa Trail 18K EPh 配速表</title>
+<title>FT18 Pace-0.3 | Formosa Trail 18K EPh 配速表</title>
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -125,6 +125,23 @@ tr.cp td:first-child{font-weight:700}
 .formula a{color:var(--pr)}
 @media(max-width:640px){.wrap{padding:var(--s4) var(--s3)}.nav{padding:var(--s3) var(--s4)}.kv-grid{grid-template-columns:1fr 1fr}.co-note{margin-left:0}.hide-m{display:none}}
 </style>
+<style id="safariWallpaperPreviewStyles">
+/* Mobile Safari preview only: original page styles are unchanged. */
+#wallpaperSaveNotice{flex-basis:100%;font-size:var(--text-xs);color:var(--wn);margin-top:8px}
+#wallpaperSaveNotice[hidden]{display:none}
+#wallpaperSaveDialog{position:fixed;inset:0;z-index:10000;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;background:rgba(0,0,0,.78);padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-right:max(16px,env(safe-area-inset-right));padding-bottom:max(16px,env(safe-area-inset-bottom));padding-left:max(16px,env(safe-area-inset-left));color:var(--tx);font-family:var(--font)}
+#wallpaperSaveDialog .wps-panel{width:100%;max-width:680px;margin:0 auto;background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:16px}
+#wallpaperSaveDialog .wps-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+#wallpaperSaveDialog h2{font-size:1.15rem;margin:0}
+#wallpaperSaveDialog p{font-size:.9rem;line-height:1.6;margin:10px 0;color:var(--txm)}
+#wallpaperSaveDialog .wps-actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+#wallpaperSaveDialog button,#wallpaperSaveDialog a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:9px 12px;border:1px solid var(--bd);border-radius:8px;background:var(--sf2);color:var(--pr);font:inherit;font-size:.9rem;text-decoration:none}
+#wallpaperSaveDialog button:disabled{opacity:.55;cursor:wait}
+#wallpaperSaveDialog [hidden]{display:none!important}
+#wallpaperSaveDialog :focus-visible{outline:2px solid var(--pr);outline-offset:3px}
+#wallpaperSaveDialog img{display:block;width:100%;height:auto;border-radius:8px;-webkit-touch-callout:default;-webkit-user-select:auto;user-select:auto}
+#wallpaperSaveDialog .wps-status{color:var(--wn);min-height:1em}
+</style>
 <style id="race-navigation-style">.ft-race-navigation{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:11px 16px;background:#11221b;color:#e6f0e3;font:13px/1.5 sans-serif}.ft-race-navigation a{display:inline-block;color:#e6f0e3;text-decoration:none;padding:6px 10px;border-radius:7px;white-space:nowrap}.ft-race-navigation a:hover{background:#ffffff16}.ft-race-navigation a:focus-visible{outline:2px solid #bce991;outline-offset:3px}.ft-race-navigation .ft-active{background:#bce991;color:#132018;font-weight:700}.ft-race-navigation div{display:flex;flex-wrap:wrap;gap:4px;max-width:100%}</style>
 </head>
 <body>
@@ -230,11 +247,11 @@ tr.cp td:first-child{font-weight:700}
     目標完賽時間 = 總 EP ÷ 目標總 EPh（含休息）。所需移動 EPh = 總 EP ÷（目標完賽時間 − 休息總時間）。<br>
     「後段衰退」以線性方式讓最後一段 EPh 比第一段低設定的百分比，並自動調整基準值，使總時間仍等於目標。<br>
     「目標時刻」= 以所需移動 EPh 均速前進、並在各站休息相同時間的時刻；「與目標差」為正代表領先目標。<br>
-    <b>資料來源與版本</b>：FT18 Pace-0.2，以 FT54 Pace-0.4.html 為範本。使用提供的 Formosa-Trail-18km.gpx 與 FT18_五個重點點位.md，保留起點、鯉魚潭觀景點、CPV、W 路口及終點，形成 4 個分段。W 為點位文件中的 intersection W（EMT / medic），並非官網長距離組 CP-C 附近的 W 路口；觀景點與醫護點不視為補給站。<br>
+    <b>資料來源與版本</b>：FT18 Pace-0.3，以 FT54 Pace-0.4.html 為範本。使用提供的 Formosa-Trail-18km.gpx 與 FT18_五個重點點位.md，保留起點、鯉魚潭觀景點、CPV、W 路口及終點，形成 4 個分段。W 為點位文件中的 intersection W（EMT / medic），並非官網長距離組 CP-C 附近的 W 路口；觀景點與醫護點不視為補給站。<br>
     <b>GPX 計算</b>：共 1,919 個航跡點，單一連續航跡。距離採 Haversine 二維地表距離（地球半徑 6,371,000 m），爬升／下降採相鄰點正／負高差累加，不另平滑。全程 18.270900 km／+810 m／−810 m，總 EP 26.370900。海拔剖面與分段使用同一份 GPX，計算保留完整精度，畫面里程顯示至小數第 2 位。<br>
     <b>點位對應</b>：起終點採 GPX 航跡首末點；中途點依文件座標、原估里程附近 ±1 km 範圍內最近的航跡點配對，避免 CPV 誤配至鄰近的起終點。觀景點 5.153 km（座標偏移 5.1 m）、CPV 10.144 km（17.0 m）、W 路口 12.898 km（3.0 m）。文件中的 for 2023 是原始標記名稱，不表示已核對最新年度路線。<br>
     <b>官方資訊</b>：<a href="https://formosatrail.com/zh/course/" target="_blank" rel="noopener noreferrer">Formosa Trail 官方賽道頁</a>（2026-11-17 核對）列 18.5 km／770 m D+、08:00 起跑、CPV 10:45、完賽限時 6 小時；本工具以 08:00 + 6 小時推得終點 14:00。官方數值與提供 GPX 不同，配速計算以 GPX 為準，實際比賽以主辦最新公告為準。官網 CPV 文字同時提及抵達與離站，本工具採較保守的「離站」判定，CPV 休息計入關門餘裕。起跑時間可調整，但關門時刻固定不變。<br>
-    <b>使用提醒</b>：EPh 僅為距離與爬升的規劃模型，不包含路面技術性、壅塞或天候影響；關門餘裕為未四捨五入時間計算；不足 1 分鐘時顯示正負秒數，畫面時刻仍顯示至分鐘。設定在當前頁面暫存，重新開啟會回到預設值。0.2 版針對輸入驗證、分配上限、控制項精度、無解提示、關門秒數與計畫起跑同步修正；GPX 與分段不變。
+    <b>使用提醒</b>：EPh 僅為距離與爬升的規劃模型，不包含路面技術性、壅塞或天候影響；關門餘裕為未四捨五入時間計算；不足 1 分鐘時顯示正負秒數，畫面時刻仍顯示至分鐘。設定在當前頁面暫存，重新開啟會回到預設值。0.2 版針對輸入驗證、分配上限、控制項精度、無解提示、關門秒數與計畫起跑同步修正；GPX 與分段不變。0.3 版僅新增手機 Safari 的 JPEG 預覽、長按儲存與可用時的系統分享；其他瀏覽器仍使用原下載流程。
   </div>
 </div>
 
@@ -501,8 +518,141 @@ function load(){
   }catch(e){return false;}
 }
 
+// Mobile Safari delivery only; the existing Canvas artwork is unchanged.
+let safariWallpaperBusy=false;
+let safariWallpaperDialog=null;
+function isMobileSafari(){
+  const ua=navigator.userAgent||'';
+  const ios=/iPad|iPhone|iPod/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1);
+  return ios&&/Safari/.test(ua)&&!/CriOS|FxiOS|EdgiOS|OPiOS|DuckDuckGo/.test(ua);
+}
+function wallpaperSaveMessage(message){
+  let node=document.getElementById('wallpaperSaveNotice');
+  if(!node){
+    node=document.createElement('div');node.id='wallpaperSaveNotice';
+    node.setAttribute('role','status');node.setAttribute('aria-live','polite');
+    $('btnWall').parentElement.appendChild(node);
+  }
+  node.textContent=message;node.hidden=!message;
+}
+function openSafariWallpaperPreview(blob,url,returnFocus){
+  const root=document.createElement('div');root.id='wallpaperSaveDialog';
+  root.setAttribute('role','dialog');root.setAttribute('aria-modal','true');
+  root.setAttribute('aria-labelledby','wallpaperSaveTitle');root.setAttribute('aria-describedby','wallpaperSaveHelp');
+  root.tabIndex=-1;
+  root.innerHTML=`<div class="wps-panel">
+    <div class="wps-header"><h2 id="wallpaperSaveTitle">FT18 配速表桌布</h2><button type="button" class="wps-close" data-wps="close">關閉</button></div>
+    <p id="wallpaperSaveHelp">請長按圖片儲存到照片，或使用分享／儲存圖片。實際選單名稱可能因系統版本不同。</p>
+    <div class="wps-actions"><button type="button" data-wps="share" hidden>分享／儲存圖片</button><a data-wps="download" download="ft18-pace-wallpaper.jpg">下載 JPEG</a><a data-wps="open" target="_blank" rel="noopener">開啟原圖</a></div>
+    <p class="wps-status" data-wps="status" role="status" aria-live="polite"></p>
+    <img data-wps="image" alt="FT18 配速表桌布，長按可使用系統的圖片儲存選單">
+  </div>`;
+  const closeButton=root.querySelector('[data-wps="close"]');
+  const shareButton=root.querySelector('[data-wps="share"]');
+  const status=root.querySelector('[data-wps="status"]');
+  const image=root.querySelector('[data-wps="image"]');
+  const previousFocus=returnFocus||document.activeElement;
+  const bodyOverflow=document.body.style.overflow;
+  const htmlOverflow=document.documentElement.style.overflow;
+  let closed=false,shareBusy=false,file=null,mounted=false;
+  function release(delayed){
+    if(delayed)setTimeout(()=>URL.revokeObjectURL(url),60000);
+    else URL.revokeObjectURL(url);
+  }
+  function close(){
+    if(closed)return;closed=true;
+    document.removeEventListener('keydown',onKey,true);
+    image.onload=null;image.onerror=null;
+    root.remove();
+    if(mounted){document.body.style.overflow=bodyOverflow;document.documentElement.style.overflow=htmlOverflow;}
+    if(safariWallpaperDialog&&safariWallpaperDialog.element===root)safariWallpaperDialog=null;
+    release(mounted);
+    if(mounted&&previousFocus&&previousFocus.isConnected){try{previousFocus.focus({preventScroll:true});}catch(_){previousFocus.focus();}}
+  }
+  function onKey(event){
+    if(event.key==='Escape'){event.preventDefault();event.stopPropagation();close();return;}
+    if(event.key!=='Tab')return;
+    const items=Array.from(root.querySelectorAll('button:not([disabled]),a[href]')).filter(el=>!el.hidden&&el.getClientRects().length>0);
+    if(!items.length){event.preventDefault();root.focus();return;}
+    const first=items[0],last=items[items.length-1],active=document.activeElement;
+    if(!root.contains(active)||active===root){event.preventDefault();(event.shiftKey?last:first).focus();}
+    else if(event.shiftKey&&active===first){event.preventDefault();last.focus();}
+    else if(!event.shiftKey&&active===last){event.preventDefault();first.focus();}
+  }
+  function shareError(error){
+    if(!closed&&(!error||error.name!=='AbortError'))status.textContent='系統分享未完成，請改用長按圖片儲存，或點「開啟原圖」。';
+  }
+  function finishShare(){shareBusy=false;shareButton.disabled=false;}
+  try{
+    root.querySelector('[data-wps="download"]').href=url;
+    root.querySelector('[data-wps="open"]').href=url;
+    try{
+      if(typeof File==='function'&&typeof navigator.share==='function'&&typeof navigator.canShare==='function'){
+        const candidate=new File([blob],'ft18-pace-wallpaper.jpg',{type:'image/jpeg'});
+        if(navigator.canShare({files:[candidate]})){file=candidate;shareButton.hidden=false;}
+      }
+    }catch(_){file=null;shareButton.hidden=true;}
+    shareButton.addEventListener('click',()=>{
+      if(!file||shareBusy||closed)return;
+      shareBusy=true;shareButton.disabled=true;status.textContent='';
+      let task;
+      try{task=navigator.share({files:[file]});}
+      catch(error){shareError(error);finishShare();return;}
+      Promise.resolve(task).then(()=>{
+        if(!closed)status.textContent='已交由系統處理，請確認圖片已儲存。';
+      },shareError).finally(finishShare);
+    });
+    closeButton.addEventListener('click',close);
+    image.onerror=()=>{if(!closed)status.textContent='圖片預覽載入失敗，請嘗試「開啟原圖」或「下載 JPEG」；也可關閉後重新產生。';};
+    image.src=url;
+    document.body.appendChild(root);mounted=true;
+    document.body.style.overflow='hidden';document.documentElement.style.overflow='hidden';
+    document.addEventListener('keydown',onKey,true);
+    safariWallpaperDialog={element:root,close,focus(){closeButton.focus();}};
+    closeButton.focus();
+  }catch(error){
+    // The caller retains URL ownership if construction fails.
+    closed=true;document.removeEventListener('keydown',onKey,true);
+    image.onload=null;image.onerror=null;root.remove();
+    if(mounted){document.body.style.overflow=bodyOverflow;document.documentElement.style.overflow=htmlOverflow;}
+    if(safariWallpaperDialog&&safariWallpaperDialog.element===root)safariWallpaperDialog=null;
+    throw error;
+  }
+}
+function showSafariWallpaper(canvas){
+  if(safariWallpaperDialog){safariWallpaperDialog.focus();return;}
+  if(safariWallpaperBusy)return;
+  safariWallpaperBusy=true;
+  const button=$('btnWall'),wasDisabled=button.disabled,wasBusy=button.getAttribute('aria-busy');
+  const active=document.activeElement;
+  const returnFocus=active&&active!==document.body&&active!==document.documentElement?active:button;
+  button.disabled=true;button.setAttribute('aria-busy','true');wallpaperSaveMessage('');
+  let restored=false;
+  function restore(){
+    if(restored)return;restored=true;safariWallpaperBusy=false;button.disabled=wasDisabled;
+    if(wasBusy===null)button.removeAttribute('aria-busy');else button.setAttribute('aria-busy',wasBusy);
+  }
+  function failed(){wallpaperSaveMessage('桌布圖片產生失敗，請再試一次；若仍無法儲存，請改用其他瀏覽器。');}
+  try{
+    canvas.toBlob(blob=>{
+      let url=null;
+      try{
+        if(!blob||blob.size<=0)throw new Error('Empty wallpaper Blob');
+        url=URL.createObjectURL(blob);
+        openSafariWallpaperPreview(blob,url,returnFocus);
+        url=null;
+      }catch(_){if(url)URL.revokeObjectURL(url);failed();}
+      finally{restore();}
+    },'image/jpeg',.94);
+  }catch(_){restore();failed();}
+}
+
 function downloadWallpaper(){
   if(!readyInputs())return false;
+  if(isMobileSafari()){
+    if(safariWallpaperDialog){safariWallpaperDialog.focus();return;}
+    if(safariWallpaperBusy)return;
+  }
   const R=compute(), W=1290,H=2796, LX=70, RX=W-70, CW=RX-LX;
   const cv=document.createElement('canvas');cv.width=W;cv.height=H;const c=cv.getContext('2d');
   const bg=c.createLinearGradient(0,0,0,H);bg.addColorStop(0,'#08100d');bg.addColorStop(1,'#111c18');c.fillStyle=bg;c.fillRect(0,0,W,H);
@@ -533,6 +683,7 @@ function downloadWallpaper(){
     y+=118;
   });
   c.textAlign='left';
+  if(isMobileSafari()){showSafariWallpaper(cv);return;}
   const a=document.createElement('a');a.download='ft18-pace-wallpaper.jpg';a.href=cv.toDataURL('image/jpeg',.94);document.body.appendChild(a);a.click();a.remove();
 }
 

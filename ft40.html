@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FT40 Pace-0.1 | Formosa Trail 40K EPh 配速表</title>
+<title>FT40 Pace-0.2 | Formosa Trail 40K EPh 配速表</title>
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -124,6 +124,19 @@ tr.cp td:first-child{font-weight:700}
 .formula b{color:var(--tx)}
 .formula a{color:var(--pr)}
 @media(max-width:640px){.wrap{padding:var(--s4) var(--s3)}.nav{padding:var(--s3) var(--s4)}.kv-grid{grid-template-columns:1fr 1fr}.co-note{margin-left:0}.hide-m{display:none}}
+</style>
+
+<style id="wallpaperSaveStyles">
+#wallpaperSaveDialog{position:fixed;inset:0;z-index:10000;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;background:rgba(0,0,0,.78);padding:16px;padding: max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));}
+#wallpaperSaveDialog .ws-panel{max-width:700px;margin:0 auto;background:var(--sf);color:var(--tx);border:1px solid var(--bd);border-radius:var(--r-lg);padding:18px;box-shadow:var(--shmd)}
+#wallpaperSaveDialog .ws-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+#wallpaperSaveDialog h2{font-size:1.15rem;margin:0}
+#wallpaperSaveDialog p{font-size:.9rem;line-height:1.6;margin:12px 0;color:var(--txm)}
+#wallpaperSaveDialog .ws-actions{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+#wallpaperSaveDialog .ws-actions a{text-decoration:none}
+#wallpaperSaveDialog [hidden]{display:none!important}
+#wallpaperSaveDialog img{display:block;width:100%;height:auto;max-width:100%;border-radius:8px;-webkit-touch-callout:default;user-select:auto;-webkit-user-select:auto}
+#wallpaperSaveDialog :focus-visible{outline:2px solid var(--pr);outline-offset:3px}
 </style>
 <style id="race-navigation-style">.ft-race-navigation{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:11px 16px;background:#11221b;color:#e6f0e3;font:13px/1.5 sans-serif}.ft-race-navigation a{display:inline-block;color:#e6f0e3;text-decoration:none;padding:6px 10px;border-radius:7px;white-space:nowrap}.ft-race-navigation a:hover{background:#ffffff16}.ft-race-navigation a:focus-visible{outline:2px solid #bce991;outline-offset:3px}.ft-race-navigation .ft-active{background:#bce991;color:#132018;font-weight:700}.ft-race-navigation div{display:flex;flex-wrap:wrap;gap:4px;max-width:100%}</style>
 </head>
@@ -402,6 +415,120 @@ function load(){
   return false;
 }
 
+
+// FT40 0.2: only the image delivery path changes on iOS Safari.
+function isMobileSafariWallpaper(){
+  const ua=navigator.userAgent||'';
+  const ios=/iPad|iPhone|iPod/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1);
+  return ios&&/Safari/.test(ua)&&!/CriOS|FxiOS|EdgiOS|OPiOS|DuckDuckGo/.test(ua);
+}
+
+function showSafariWallpaper(cv){
+  const existing=document.getElementById('wallpaperSaveDialog');
+  if(existing){existing.querySelector('[data-ws-close]').focus();return;}
+  const exportBtn=$('btnWall');
+  if(exportBtn.disabled)return;
+  const previousFocus=document.activeElement;
+  exportBtn.disabled=true;
+  const wasBusy=exportBtn.getAttribute('aria-busy');
+  exportBtn.setAttribute('aria-busy','true');
+  const restoreButton=()=>{
+    exportBtn.disabled=false;
+    if(wasBusy===null)exportBtn.removeAttribute('aria-busy');
+    else exportBtn.setAttribute('aria-busy',wasBusy);
+  };
+  const fail=()=>{restoreButton();window.alert('桌布圖片產生失敗，請重試。');};
+  try{
+    cv.toBlob(blob=>{
+      if(!blob||blob.size===0){fail();return;}
+      let url=null,dialog=null,closed=false,locked=false;
+      const oldBodyOverflow=document.body.style.overflow;
+      const oldHtmlOverflow=document.documentElement.style.overflow;
+      const background=[];
+      let onKey=null,onFocus=null;
+      const cleanup=(delay=true)=>{
+        if(closed)return;
+        closed=true;
+        if(onKey)document.removeEventListener('keydown',onKey,true);
+        if(onFocus)document.removeEventListener('focusin',onFocus,true);
+        if(dialog)dialog.remove();
+        if(locked){
+          document.body.style.overflow=oldBodyOverflow;
+          document.documentElement.style.overflow=oldHtmlOverflow;
+          background.forEach(([el,value])=>{if(value===null)el.removeAttribute('inert');else el.setAttribute('inert',value);});
+        }
+        if(url){const release=url;if(delay)setTimeout(()=>URL.revokeObjectURL(release),60000);else URL.revokeObjectURL(release);}
+        if(previousFocus&&previousFocus.isConnected&&typeof previousFocus.focus==='function')previousFocus.focus();
+      };
+      try{
+        url=URL.createObjectURL(blob);
+        const filename='ft40-pace-wallpaper.jpg';
+        dialog=document.createElement('div');
+        dialog.id='wallpaperSaveDialog';
+        dialog.setAttribute('role','dialog');
+        dialog.setAttribute('aria-modal','true');
+        dialog.setAttribute('aria-labelledby','wallpaperSaveTitle');
+        dialog.setAttribute('aria-describedby','wallpaperSaveHelp');
+        dialog.innerHTML=`<div class="ws-panel">
+          <div class="ws-head"><h2 id="wallpaperSaveTitle">FT40 桌布預覽與儲存</h2><button type="button" class="btn" data-ws-close>關閉</button></div>
+          <p id="wallpaperSaveHelp">請長按圖片儲存到照片，或使用分享／儲存圖片。實際選單名稱可能因系統版本不同。</p>
+          <div class="ws-actions"><button type="button" class="btn pr" data-ws-share hidden>分享／儲存圖片</button><a class="btn" data-ws-download>下載 JPEG</a><a class="btn" data-ws-open target="_blank" rel="noopener">開啟原圖</a></div>
+          <p role="status" aria-live="polite" data-ws-status>圖片準備中…</p>
+          <img alt="FT40 配速表桌布" data-ws-image>
+        </div>`;
+        const closeBtn=dialog.querySelector('[data-ws-close]');
+        const shareBtn=dialog.querySelector('[data-ws-share]');
+        const status=dialog.querySelector('[data-ws-status]');
+        const img=dialog.querySelector('[data-ws-image]');
+        const download=dialog.querySelector('[data-ws-download]');
+        const open=dialog.querySelector('[data-ws-open]');
+        download.href=url;download.download=filename;open.href=url;
+        img.onload=()=>{if(!closed)status.textContent='圖片已準備完成，可長按圖片或使用上方儲存入口。';};
+        img.onerror=()=>{if(!closed)status.textContent='圖片預覽載入失敗，請改用「下載 JPEG」或「開啟原圖」儲存，或關閉後重試。';};
+        let file=null;
+        try{
+          if(typeof File==='function'&&typeof navigator.share==='function'&&typeof navigator.canShare==='function'){
+            const candidate=new File([blob],filename,{type:'image/jpeg'});
+            if(navigator.canShare({files:[candidate]}))file=candidate;
+          }
+        }catch(e){file=null;}
+        if(file){
+          shareBtn.hidden=false;
+          shareBtn.addEventListener('click',async()=>{
+            shareBtn.disabled=true;
+            status.textContent='';
+            try{await navigator.share({files:[file]});}
+            catch(e){if(!closed&&(!e||e.name!=='AbortError'))status.textContent='無法使用系統分享，請改用長按圖片儲存，或選擇「開啟原圖」。';}
+            finally{shareBtn.disabled=false;}
+          });
+        }
+        closeBtn.addEventListener('click',()=>cleanup());
+        const focusable=()=>Array.from(dialog.querySelectorAll('button:not([disabled]),a[href]')).filter(el=>!el.hidden);
+        onKey=e=>{
+          if(e.key==='Escape'){e.preventDefault();e.stopPropagation();cleanup();}
+          else if(e.key==='Tab'){
+            const items=focusable(),first=items[0],last=items[items.length-1];
+            if(e.shiftKey&&(document.activeElement===first||!dialog.contains(document.activeElement))){e.preventDefault();last.focus();}
+            else if(!e.shiftKey&&(document.activeElement===last||!dialog.contains(document.activeElement))){e.preventDefault();first.focus();}
+          }
+        };
+        onFocus=e=>{if(!dialog.contains(e.target))closeBtn.focus();};
+        document.body.appendChild(dialog);
+        locked=true;
+        for(const el of document.body.children){
+          if(el!==dialog&&!/^(SCRIPT|STYLE|LINK)$/.test(el.tagName)){
+            background.push([el,el.getAttribute('inert')]);el.setAttribute('inert','');
+          }
+        }
+        document.body.style.overflow='hidden';document.documentElement.style.overflow='hidden';
+        document.addEventListener('keydown',onKey,true);document.addEventListener('focusin',onFocus,true);
+        img.src=url;
+        restoreButton();closeBtn.focus();
+      }catch(e){cleanup(false);fail();}
+    },'image/jpeg',.94);
+  }catch(e){fail();}
+}
+
 function downloadWallpaper(){
   const R=compute(), W=1290,H=2796, LX=70, RX=W-70, CW=RX-LX;
   const cv=document.createElement('canvas');cv.width=W;cv.height=H;const c=cv.getContext('2d');
@@ -433,6 +560,7 @@ function downloadWallpaper(){
     y+=118;
   });
   c.textAlign='left';
+  if(isMobileSafariWallpaper()){showSafariWallpaper(cv);return;}
   const a=document.createElement('a');a.download='ft40-pace-wallpaper.jpg';a.href=cv.toDataURL('image/jpeg',.94);document.body.appendChild(a);a.click();a.remove();
 }
 

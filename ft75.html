@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FT75 Pace-0.1 | Formosa Trail 75K EPh 配速表</title>
+<title>FT75 Pace-0.2 | Formosa Trail 75K EPh 配速表</title>
 <style>
 :root{
   --text-xs:clamp(.75rem,.7rem + .25vw,.875rem);--text-sm:clamp(.875rem,.8rem + .35vw,1rem);
@@ -130,6 +130,16 @@ tr.cp td:first-child{font-weight:700}
 .profile-legend span{white-space:nowrap}.audit{overflow-x:auto;margin-top:12px}.audit td,.audit th{font-size:12px}
 .source-note{background:var(--achl);border:1px solid var(--bd);padding:12px 16px;border-radius:12px;margin-bottom:20px;font-size:var(--text-xs);color:var(--txm)}
 @media(max-width:440px){.nav-brand{font-size:12px;gap:6px}.hero-stats{gap:16px}.set-row{font-size:12px}.field{width:76px}.co-item{font-size:12px}}
+
+/* FT75 0.2: scoped mobile Safari wallpaper delivery UI only. */
+.wall-save-dialog{position:fixed;inset:0;z-index:1000;overflow-y:auto;overscroll-behavior:contain;background:rgba(0,0,0,.78);padding:16px;padding:max(16px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));-webkit-overflow-scrolling:touch}
+.wall-save-card{max-width:720px;margin:0 auto;background:var(--sf);color:var(--tx);border:1px solid var(--bd);border-radius:var(--r-lg);padding:16px;box-shadow:var(--shmd)}
+.wall-save-head{position:sticky;top:-1px;z-index:1;background:var(--sf);display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0}
+.wall-save-head h2{font-size:var(--text-lg);margin:0}.wall-save-tip,.wall-save-status{font-size:var(--text-sm);margin:10px 0;overflow-wrap:anywhere}
+.wall-save-actions{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}.wall-save-actions a,.wall-save-actions button,.wall-save-close{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 14px;border:1px solid var(--bd);border-radius:var(--r-md);background:var(--sf2);color:var(--pr);font:inherit;text-decoration:none}
+.wall-save-dialog [hidden]{display:none!important}.wall-save-dialog button:disabled{opacity:.6;cursor:wait}.wall-save-status{color:var(--ac);min-height:1.5em}
+.wall-save-image{display:block;width:100%;height:auto;max-width:100%;-webkit-touch-callout:default;user-select:auto;-webkit-user-select:auto}
+.wall-save-dialog :focus-visible{outline:2px solid var(--pr);outline-offset:3px}
 </style>
 <style id="race-navigation-style">.ft-race-navigation{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:11px 16px;background:#11221b;color:#e6f0e3;font:13px/1.5 sans-serif}.ft-race-navigation a{display:inline-block;color:#e6f0e3;text-decoration:none;padding:6px 10px;border-radius:7px;white-space:nowrap}.ft-race-navigation a:hover{background:#ffffff16}.ft-race-navigation a:focus-visible{outline:2px solid #bce991;outline-offset:3px}.ft-race-navigation .ft-active{background:#bce991;color:#132018;font-weight:700}.ft-race-navigation div{display:flex;flex-wrap:wrap;gap:4px;max-width:100%}</style>
 </head>
@@ -255,11 +265,12 @@ tr.cp td:first-child{font-weight:700}
     目標完賽時間 = 總 EP ÷ 目標總 EPh（含休息）。所需移動 EPh = 總 EP ÷（目標完賽時間 − 休息總時間）。<br>
     「後段衰退」依各段 EP 中點線性分配，最後一段 EPh 比第一段低設定百分比，並以完整精度正規化，使總時間仍符合目標。手動改 EPh 不會自動重分配其他段；目標或休息變更後，請按均分或衰退分配重新套用。<br>
     「目標時刻」= 以所需移動 EPh 前進、加上相同站點停留配置的抵達時刻；「與目標差」為正代表領先。分段時間與配速不含該站停留，總時間包含所有中途停留。<br>
-    <b>資料來源與版本</b>：FT75 Pace-0.1，沿用提供的 FT18 Pace-0.2.html 介面與 EPh 計算邏輯，使用 Formosa-Trail-75km.gpx 及 FT75 精選 17 點位文件，保留 17 點位、形成 16 段。CP A／B 與 X／Y／Z 的第一次、第二次分開處理；點位名稱中的 1667m、1535m 沿用原標記，不是本工具重新量測的海拔。<br>
+    <b>資料來源與版本</b>：FT75 Pace-0.2，沿用提供的 FT18 Pace-0.2.html 介面與 EPh 計算邏輯，使用 Formosa-Trail-75km.gpx 及 FT75 精選 17 點位文件，保留 17 點位、形成 16 段。CP A／B 與 X／Y／Z 的第一次、第二次分開處理；點位名稱中的 1667m、1535m 沿用原標記，不是本工具重新量測的海拔。<br>
     <b>GPX 計算</b>：共 6,048 個航跡點，單一連續航跡。距離採 Haversine 二維地表距離（地球半徑 6,371,000 m）；爬升／下降採相鄰航跡點正／負高差累加，不另平滑。全程 76.157438 km／+4281 m／−4281 m，總 EP 118.967438。分段與剖面圖使用同一 GPX；保留完整精度計算，顯示值有四捨五入。<br>
     <b>點位對應</b>：起終點採航跡首末點。其餘點位按文件估計里程 ±1 km 搜尋座標最近的航跡點，且驗證索引嚴格遞增，避免折返段同座標誤配。中途點最大偏移 19.4 m；起終點與文件座標相差 31.6 m。文件里程不是本檔 GPX 重算里程，兩者不混用。文件中的 for 2023 為原始標記名稱，不代表已核對該年度最新路線。<br>
     <b>官方資訊</b>：<a href="https://formosatrail.com/zh/course/" target="_blank" rel="noopener noreferrer">Formosa Trail 官方賽道頁</a>（2026-11-17 核對）：75 km／4,100 m D+、距離表終點 76.5 km／4,090 m D+；04:00 起跑、限時 20 小時。CP A1 08:15、A2 10:15、B1 14:00、C 16:00、B2 20:30。你提供的 75K 剖面圖在 CP B1 另寫「LEAVE BEFORE 14:15」，與官網列 14:00 且採離站的說明有差異；本版採較保守的官網 14:00 離站，請賽前向主辦確認。CP 以離站時刻判斷；終點依官網表列 &lt;24:00，恰好次日 00:00 視為未在截止前抵達。CP 恰好關門為 0 秒餘裕，請勿以此作為安全規劃。<br>
     <b>使用提醒</b>：調整起跑時間不會平移官方關門時刻。「+1」代表起跑當日之次日；24:00 以 00:00 +1 顯示。官網數字與提供 GPX 不同，配速依提供 GPX 計算；路線與規定以主辦最新公告為準。EPh 未包含技術路面、天候、壅塞、夜間及個人能力差異，不代表完賽保證。關門用未四捨五入時間計算；時鐘顯示至分鐘，餘裕不足 1 分鐘顯示正負秒數。設定僅當前頁面暫存，重開或重新整理回預設；可用 CSV 留存本次計畫。單檔內嵌資料、無外部字型或程式依賴，可離線使用；不提供 GPS 導航功能。<br>
+    手機 Safari 儲存桌布：按「下載手機桌布」後會顯示完整 JPEG 預覽，可長按圖片儲存；裝置支援時也提供「分享／儲存圖片」，另可下載 JPEG 或開啟原圖。其餘瀏覽器維持原下載流程。<br>
     <details><summary style="cursor:pointer;color:var(--pr);margin-top:12px">展開 17 點位 GPX 對應與資料稽核表</summary><div class="audit"><table><thead><tr><th>編號／名稱</th><th>文件 km</th><th>GPX km</th><th>GPX 海拔 m</th><th>偏移 m</th><th>航跡索引（0 起算）</th></tr></thead><tbody><tr><td>01 起點</td><td>0.000</td><td>0.000000</td><td>509</td><td>31.6</td><td>0</td></tr><tr><td>02 舊武界越 1667m〔原標記名稱〕</td><td>10.281</td><td>10.278473</td><td>1640</td><td>2.4</td><td>898</td></tr><tr><td>03 X 路口／第一次</td><td>10.507</td><td>10.484847</td><td>1666</td><td>19.4</td><td>921</td></tr><tr><td>04 CP A 茶園／第一次</td><td>13.430</td><td>13.469241</td><td>1522</td><td>10.5</td><td>1205</td></tr><tr><td>05 關頭山 1535m 折返點〔原標記名稱〕</td><td>18.090</td><td>18.093410</td><td>1544</td><td>18.6</td><td>1575</td></tr><tr><td>06 CP A 茶園／第二次</td><td>22.662</td><td>22.662807</td><td>1519</td><td>5.7</td><td>1919</td></tr><tr><td>07 X 路口／第二次</td><td>25.410</td><td>25.414244</td><td>1664</td><td>14.4</td><td>2176</td></tr><tr><td>08 Y 路口／第一次</td><td>31.552</td><td>31.562380</td><td>1574</td><td>16.4</td><td>2877</td></tr><tr><td>09 CP B 武界橘子屋／第一次</td><td>33.895</td><td>33.908566</td><td>1316</td><td>9.3</td><td>3056</td></tr><tr><td>10 水頭谷 Shui Tou Gu</td><td>38.715</td><td>38.744340</td><td>1598</td><td>4.5</td><td>3426</td></tr><tr><td>11 Z 路口／第一次</td><td>39.491</td><td>39.524021</td><td>1469</td><td>4.2</td><td>3479</td></tr><tr><td>12 CP C 卓社林道 5K／折返</td><td>44.465</td><td>44.500928</td><td>1420</td><td>0.5</td><td>3827</td></tr><tr><td>13 Z 路口／第二次</td><td>49.382</td><td>49.426504</td><td>1454</td><td>18.1</td><td>4191</td></tr><tr><td>14 武界商店 Wujie shop</td><td>58.952</td><td>59.013328</td><td>765</td><td>6.3</td><td>4881</td></tr><tr><td>15 CP B 武界橘子屋／第二次</td><td>62.174</td><td>62.232709</td><td>1303</td><td>7.3</td><td>5168</td></tr><tr><td>16 Y 路口／第二次</td><td>64.549</td><td>64.619415</td><td>1564</td><td>10.4</td><td>5326</td></tr><tr><td>17 終點</td><td>76.085</td><td>76.157438</td><td>509</td><td>31.6</td><td>6047</td></tr></tbody></table></div></details>
   </div>
 </div>
@@ -527,10 +538,105 @@ function load(){
 }
 function downloadCSV(){
   if(!readyInputs())return false;
-  const R=compute(),lines=[['FT75 Pace-0.1','GPX 76.157438 km / +4281 m','官方關門以離站判定；終點須於 24:00 前抵達'],['目標 EPh',targetEph(),'計畫總 EPh',R.planEph,'計畫分鐘',R.total],['編號','點位','分段 km','累計 km','爬升 m','下降 m','EP','移動 EPh','移動分鐘','休息分鐘','抵達','離站','目標抵達','目標領先分鐘','關門','關門餘裕分鐘','判定'],['01','起點',0,0,0,0,'','','',0,clock(startMin()),clock(startMin())]];
+  const R=compute(),lines=[['FT75 Pace-0.2','GPX 76.157438 km / +4281 m','官方關門以離站判定；終點須於 24:00 前抵達'],['目標 EPh',targetEph(),'計畫總 EPh',R.planEph,'計畫分鐘',R.total],['編號','點位','分段 km','累計 km','爬升 m','下降 m','EP','移動 EPh','移動分鐘','休息分鐘','抵達','離站','目標抵達','目標領先分鐘','關門','關門餘裕分鐘','判定'],['01','起點',0,0,0,0,'','','',0,clock(startMin()),clock(startMin())]];
   R.rows.forEach(r=>lines.push([String(r.i+2).padStart(2,'0'),r.s.to,r.s.dist.toFixed(6),r.s.km.toFixed(6),r.s.gain,r.s.loss,r.s.ep.toFixed(6),segEph[r.i].toFixed(8),r.segMin.toFixed(6),r.rest,clock(r.arr),r.i===SEGS.length-1?'':clock(r.dep),R.mEph?clock(r.tArr):'',R.mEph?r.diff.toFixed(6):'',r.s.cut?clock(r.s.cut):'',r.margin===null?'':r.margin.toFixed(6),r.margin===null?'':r.late?'逾時':r.margin<30?'餘裕不足30分':'通過']));
   const text='\ufeff'+lines.map(row=>row.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(',')).join('\r\n');
-  const blob=new Blob([text],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='FT75 Pace-0.1.csv';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),10000);return true;
+  const blob=new Blob([text],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='FT75 Pace-0.2.csv';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),10000);return true;
+}
+
+// FT75 0.2: only mobile Safari uses the JPEG preview/save flow.
+let safariWallpaperBusy=false;
+let safariWallpaperPreview=null;
+const WALLPAPER_JPEG_NAME='FT75 Pace-0.1-wallpaper.jpg';
+function isMobileSafari(){
+  const ua=navigator.userAgent||'';
+  const ios=/iPad|iPhone|iPod/i.test(ua)||(/Macintosh/i.test(ua)&&navigator.maxTouchPoints>1);
+  return ios&&/Safari/i.test(ua)&&!/CriOS|FxiOS|EdgiOS|OPiOS|DuckDuckGo/i.test(ua);
+}
+function openSafariWallpaperPreview(blob){
+  const url=URL.createObjectURL(blob),opener=$('btnWall'),previousOverflow=document.body.style.overflow;
+  let dialog=null;const listeners=[];
+  const state={dialog:null,url,closed:false};
+  const on=(el,type,fn,options)=>{el.addEventListener(type,fn,options);listeners.push(()=>el.removeEventListener(type,fn,options));};
+  function close(delayed=true){
+    if(state.closed)return;
+    state.closed=true;
+    listeners.splice(0).forEach(off=>off());dialog?.remove();
+    document.body.style.overflow=previousOverflow;
+    if(safariWallpaperPreview===state)safariWallpaperPreview=null;
+    if(delayed)setTimeout(()=>URL.revokeObjectURL(url),60000);
+    else URL.revokeObjectURL(url);
+    try{opener.focus({preventScroll:true});}catch(e){opener.focus();}
+  }
+  try{
+    dialog=document.createElement('div');state.dialog=dialog;
+    dialog.id='wallpaperSaveDialog';dialog.className='wall-save-dialog';
+    dialog.setAttribute('role','dialog');dialog.setAttribute('aria-modal','true');
+    dialog.setAttribute('aria-labelledby','wallpaperSaveTitle');dialog.setAttribute('aria-describedby','wallpaperSaveTip');dialog.tabIndex=-1;
+    dialog.innerHTML=`<section class="wall-save-card">
+      <div class="wall-save-head"><h2 id="wallpaperSaveTitle">FT75 桌布預覽與儲存</h2><button type="button" class="wall-save-close" aria-label="關閉桌布預覽">關閉</button></div>
+      <p id="wallpaperSaveTip" class="wall-save-tip">請長按圖片儲存到照片，或使用分享／儲存圖片。實際選單名稱可能因系統版本不同。</p>
+      <div class="wall-save-actions"><button type="button" data-wall-share hidden>分享／儲存圖片</button><a data-wall-download>下載 JPEG</a><a data-wall-open target="_blank" rel="noopener">開啟原圖</a></div>
+      <p class="wall-save-status" role="status" aria-live="polite"></p>
+      <img class="wall-save-image" alt="FT75 配速表桌布完整 JPEG 預覽">
+    </section>`;
+    const image=dialog.querySelector('img'),share=dialog.querySelector('[data-wall-share]'),download=dialog.querySelector('[data-wall-download]'),open=dialog.querySelector('[data-wall-open]'),status=dialog.querySelector('[role="status"]'),closeButton=dialog.querySelector('.wall-save-close');
+    download.href=url;download.download=WALLPAPER_JPEG_NAME;open.href=url;
+    on(image,'error',()=>{status.textContent='圖片預覽載入失敗，請試用「開啟原圖」或「下載 JPEG」；也可關閉後重試。';});
+    let file=null;
+    try{
+      if(typeof File==='function'&&typeof navigator.share==='function'&&typeof navigator.canShare==='function'){
+        const candidate=new File([blob],WALLPAPER_JPEG_NAME,{type:'image/jpeg'});
+        if(navigator.canShare({files:[candidate]}))file=candidate;
+      }
+    }catch(e){file=null;}
+    if(file){
+      share.hidden=false;
+      on(share,'click',()=>{
+        if(share.disabled)return;
+        share.disabled=true;status.textContent='';
+        const failure=e=>{if(e?.name!=='AbortError')status.textContent='無法使用系統分享，請改用長按圖片儲存，或選擇「開啟原圖」。';};
+        try{
+          const pending=navigator.share({files:[file]});
+          Promise.resolve(pending).catch(failure).finally(()=>{share.disabled=false;});
+        }catch(e){failure(e);share.disabled=false;}
+      });
+    }
+    on(closeButton,'click',()=>close());
+    on(document,'keydown',e=>{
+      if(e.key==='Escape'){e.preventDefault();e.stopPropagation();close();return;}
+      if(e.key!=='Tab')return;
+      const focusable=Array.from(dialog.querySelectorAll('button,a[href]')).filter(el=>!el.hidden&&!el.disabled);
+      if(!focusable.length){e.preventDefault();dialog.focus();return;}
+      const first=focusable[0],last=focusable[focusable.length-1],active=document.activeElement;
+      if(e.shiftKey&&(active===first||!dialog.contains(active))){e.preventDefault();last.focus();}
+      else if(!e.shiftKey&&(active===last||!dialog.contains(active))){e.preventDefault();first.focus();}
+    },true);
+    on(window,'pagehide',()=>close());
+    document.body.appendChild(dialog);document.body.style.overflow='hidden';
+    safariWallpaperPreview=state;image.src=url;closeButton.focus();
+    return state;
+  }catch(e){close(false);throw e;}
+}
+function showSafariWallpaper(cv){
+  if(safariWallpaperBusy)return false;
+  if(safariWallpaperPreview&&!safariWallpaperPreview.closed){
+    safariWallpaperPreview.dialog.querySelector('.wall-save-close').focus();return false;
+  }
+  const button=$('btnWall'),wasDisabled=button.disabled,oldLabel=button.textContent;
+  safariWallpaperBusy=true;button.disabled=true;button.textContent='正在準備圖片…';
+  const restore=()=>{safariWallpaperBusy=false;button.disabled=wasDisabled;button.textContent=oldLabel;};
+  const failure=()=>window.alert('桌布圖片產生失敗，請稍後重試。原配速設定未變更。');
+  try{
+    cv.toBlob(blob=>{
+      try{
+        if(!blob||blob.size===0)throw new Error('Empty JPEG Blob');
+        openSafariWallpaperPreview(blob);
+      }catch(e){failure();}
+      finally{restore();}
+    },'image/jpeg',.94);
+  }catch(e){restore();failure();}
+  return true;
 }
 
 function downloadWallpaper(){
@@ -565,6 +671,7 @@ function downloadWallpaper(){
     y+=105;
   });
   c.textAlign='left';c.fillStyle='#8fa39a';c.font=`23px ${F}`;c.fillText('CP 餘裕依離站判定；時刻 +1 為次日。終點須於 00:00 +1 前抵達。',LX,y+35);
+  if(isMobileSafari()){showSafariWallpaper(cv);return;}
   const a=document.createElement('a');a.download='FT75 Pace-0.1-wallpaper.jpg';a.href=cv.toDataURL('image/jpeg',.94);document.body.appendChild(a);a.click();a.remove();
 }
 
