@@ -19,10 +19,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Restore original pages and activate complete four-race bundle
+      - name: Restore verified pages and apply mobile saving updates
         run: |
           python .site-source/build.py
           python .site-source/build-extra.py
+          python .site-source/build-mobile-save.py
       - name: Commit generated website and guide
         run: |
           git config user.name "github-actions[bot]"
@@ -32,7 +33,7 @@ jobs:
             if [[ -f "$file" ]]; then git add "$file"; fi
           done
           if ! git diff --cached --quiet; then
-            git commit -m "Integrate four Formosa Trail races and usage guide"
+            git commit -m "Publish device-tested mobile saving fixes for all four races"
             git push origin HEAD:main
           fi
       - name: Prepare public site only
